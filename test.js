@@ -48,10 +48,32 @@ describe('Listing patients on /patients', function() {
 
 		request(app)
 			.get('/patients')
-			.expect(JSON.stringify(['Harms, David','Peeples, Trevor','Doyle, Josh']), done);
+			.expect(JSON.stringify(['Harms','Peeples','Doyle']), done);
 
 	});
 	
+});
+
+describe('Creating new patients', function() {
+
+	it('Returns a 201 status code', function(done) {
+
+		request(app)
+			.post('/patients')
+			.send('name=Miller&description=cancer')
+			.expect(201, done);
+
+	});
+
+	it('Return the patient name', function(done) {
+
+		request(app)
+			.post('/patients')
+			.send('name=Miller&description=cancer')
+			.expect(/miller/i, done);
+
+	});
+
 });
 
 
