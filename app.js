@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
 
+app.set('view engine', 'jade');
+app.set('views', __dirname + '/tempaltes');
+
 var bodyParser = require('body-parser');
 var urlencode = bodyParser.urlencoded({ extended: false });
 
@@ -25,4 +28,4 @@ app.post('/patients', urlencode, function(request, response) {
 
 module.exports = app;
 
-// left off at 52.47
+// left off at 52.47 employed body parser.
